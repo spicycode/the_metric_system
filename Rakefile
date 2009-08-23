@@ -1,7 +1,7 @@
-require 'rubygems'
 require 'rake'
 
 begin
+  require 'rubygems'
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "the_metric_system"
@@ -19,21 +19,28 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: sudo gem install jeweler"
 end
 
-require 'spec/rake/spectask'
-Spec::Rake::SpecTask.new(:spec) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+begin 
+  require 'spec/rake/spectask'
+
+  Spec::Rake::SpecTask.new(:spec) do |spec|
+    spec.libs << 'lib' << 'spec'
+    spec.spec_files = FileList['spec/**/*_spec.rb']
+  end
+
+  Spec::Rake::SpecTask.new(:rcov) do |spec|
+    spec.libs << 'lib' << 'spec'
+    spec.pattern = 'spec/**/*_spec.rb'
+    spec.rcov = true
+  end
+
+  task :spec => :check_dependencies
+
+  task :default => :spec
+rescue LoadError
+  task :default do
+    abort "Rspec is not available."
+  end
 end
-
-Spec::Rake::SpecTask.new(:rcov) do |spec|
-  spec.libs << 'lib' << 'spec'
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
-task :spec => :check_dependencies
-
-task :default => :spec
 
 begin
   require 'yard'

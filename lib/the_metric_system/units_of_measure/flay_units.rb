@@ -6,7 +6,7 @@ module TheMetricSystem::UnitsOfMeasure
     end
 
     def self.report_to_standards_body(options={})
-      options.merge!(reasonable_defaults)
+      reasonable_defaults.merge!(options)
 
       # Don't like this, but still getting used to this whole, don't require rubygems in classes thing
       # Will refactor soon

@@ -5,9 +5,9 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "the_metric_system"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
-    gem.email = "chad@spicycode.com"
+    gem.summary = %Q{	The metric system is an international decimalised system of measurement, first adopted by France in 1791.}
+    gem.description = %Q{	The metric system is an international decimalised system of measurement, first adopted by France in 1791.}
+    gem.email = "chad.humphries@gmail.com"
     gem.homepage = "http://github.com/spicycode/the_metric_system"
     gem.authors = ["Chad Humphries"]
 

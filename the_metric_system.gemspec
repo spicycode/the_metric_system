@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Chad Humphries"]
   s.date = %q{2009-08-23}
-  s.description = %q{TODO: longer description of your gem}
-  s.email = %q{chad@spicycode.com}
+  s.description = %q{	The metric system is an international decimalised system of measurement, first adopted by France in 1791.}
+  s.email = %q{chad.humphries@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.md"
@@ -31,13 +31,14 @@ Gem::Specification.new do |s|
      "spec/spec_helper.rb",
      "spec/the_metric_system/units_of_measure/flay_units_spec.rb",
      "spec/the_metric_system/units_of_measure/flog_units_spec.rb",
-     "spec/the_metric_system_spec.rb"
+     "spec/the_metric_system_spec.rb",
+     "the_metric_system.gemspec"
   ]
   s.homepage = %q{http://github.com/spicycode/the_metric_system}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{The metric system is an international decimalised system of measurement, first adopted by France in 1791.}
   s.test_files = [
     "spec/spec_helper.rb",
      "spec/the_metric_system/units_of_measure/flay_units_spec.rb",

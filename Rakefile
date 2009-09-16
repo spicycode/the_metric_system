@@ -11,7 +11,7 @@ begin
     gem.homepage = "http://github.com/spicycode/the_metric_system"
     gem.authors = ["Chad Humphries"]
 
-    gem.add_development_dependency "rspec"
+    gem.add_development_dependency "rspec-meta"
     gem.add_development_dependency "yard"
 
     gem.add_dependency "flog", ">=2.2.0"
@@ -23,19 +23,18 @@ rescue LoadError
 end
 
 begin 
-  require 'spec/rake/spectask'
-
-  Spec::Rake::SpecTask.new(:spec) do |spec|
-    spec.libs << 'lib' << 'spec'
-    spec.spec_files = FileList['spec/**/*_spec.rb']
-    spec.spec_opts = ['-c', '-fs']
+  require 'rspec/core/rake_task'
+  Rspec::Core::RakeTask.new(:spec) do |t|
+    t.ruby_opts = '-Ilib -Ispec'
+    t.pattern = 'spec/**/*_spec.rb'
   end
 
-  Spec::Rake::SpecTask.new(:rcov) do |spec|
-    spec.libs << 'lib' << 'spec'
-    spec.pattern = 'spec/**/*_spec.rb'
-    spec.spec_opts = ['-c', '-fs']
-    spec.rcov = true
+  desc "Run all examples using rcov"
+  Rspec::Core::RakeTask.new :rcov do |t|
+    t.rcov = true
+    t.rcov_opts =  %[-Ilib -Ispec --exclude "gems/*,spec/resources,spec/lib,spec/spec_helper.rb,db/*,/Library/Ruby/*,config/*"]
+    t.rcov_opts << %[--text-report --sort coverage]
+    t.pattern = "spec/**/*_spec.rb"
   end
 
   task :spec => :check_dependencies

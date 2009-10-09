@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>TheMetricSystem::UnitsOfMeasure::FlogUnits</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            TheMetricSystem::UnitsOfMeasure::FlogUnits 
+            
+                <span class="parent">&lt; 
+                    
+                    Object
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/lib/the_metric_system/units_of_measure/flog_units_rb.html">lib/the_metric_system/units_of_measure/flog_units.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M000002">reasonable_defaults</a>,</li>
+                
+                <li><a href="#M000003">report_to_standards_body</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M000002">
+                    
+                    <a name="M000002"></a><b>reasonable_defaults</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000002_source')" id="l_M000002_source">show</a>
+                        
+                        | <a href="http://github.com/spicycode/the_metric_system/blob/35551975bbb9b38965be383a1d58e753c57e7997/lib/the_metric_system/units_of_measure/flog_units.rb#L4" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000002_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/the_metric_system/units_of_measure/flog_units.rb, line 4</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">reasonable_defaults</span>
+      { <span class="ruby-identifier">:threshold</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">25</span>, <span class="ruby-identifier">:directories</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-value str">'lib'</span>] }
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M000003">
+                    
+                    <a name="M000003"></a><b>report_to_standards_body</b>(options={})
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M000003_source')" id="l_M000003_source">show</a>
+                        
+                        | <a href="http://github.com/spicycode/the_metric_system/blob/35551975bbb9b38965be383a1d58e753c57e7997/lib/the_metric_system/units_of_measure/flog_units.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M000003_source" class="dyn-source">
+                        <pre><span class="ruby-comment cmt"># File lib/the_metric_system/units_of_measure/flog_units.rb, line 8</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">report_to_standards_body</span>(<span class="ruby-identifier">options</span>={})
+      <span class="ruby-identifier">reasonable_defaults</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>)
+
+      <span class="ruby-comment cmt"># Don't like this, but still getting used to this whole, don't require rubygems in classes thing</span>
+      <span class="ruby-comment cmt"># Will refactor soon</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'flog'</span>
+      <span class="ruby-identifier">flog</span> = <span class="ruby-constant">Flog</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">:methods</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-identifier">flog</span>.<span class="ruby-identifier">flog</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:directories</span>]
+      <span class="ruby-identifier">threshold</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:threshold</span>]
+
+      <span class="ruby-identifier">bad_methods</span> = <span class="ruby-identifier">flog</span>.<span class="ruby-identifier">totals</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">score</span><span class="ruby-operator">|</span> <span class="ruby-identifier">score</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">threshold</span> }
+
+      <span class="ruby-identifier">bad_methods</span>.<span class="ruby-identifier">sort</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span> <span class="ruby-identifier">a</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">b</span>[<span class="ruby-value">1</span>] }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">score</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;%8.1f: %s&quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">score</span>, <span class="ruby-identifier">name</span>]
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Flog found #{bad_methods.size} methods with a complexity &gt; #{options[:threshold]}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bad_methods</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    
